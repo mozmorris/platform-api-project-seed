@@ -81,6 +81,10 @@ class LeftMenu extends HTMLElement {
         const layoutTemplates = getTemplates(LAYOUT_STORE_KEY);
         const snapshotTemplates = getTemplates(SNAPSHOT_STORE_KEY);
         const menuItems = html`
+        <span>Platfom</span>
+        <ul>
+            <button @click=${() => this.platformFromManifest()}>Platform from Manifest</button>
+        </ul>
         <span>Applications</span>
         <ul>
             ${this.appList.map((item) => html`<li>
@@ -124,6 +128,18 @@ class LeftMenu extends HTMLElement {
         const templates = getTemplates(LAYOUT_STORE_KEY);
         const templateToUse = templates.find(i => i.name === templateName);
         fin.Platform.Layout.getCurrentSync().replace(templateToUse.layout);
+    }
+
+    platformFromManifest = async () => {
+        alert('creating platform from manifest');
+
+        const platform = await fin.Platform.startFromManifest(`${location.origin}/app.json`);
+
+        alert('platform created');
+
+        console.log({
+            platform
+        })
     }
 
     addView = async (printName) => {
