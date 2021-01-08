@@ -56,6 +56,7 @@
     "snapshot": {
         "windows": [
             {
+                "name": "always-on-top-test",
                 "layout": {
                     "content": [
                         {

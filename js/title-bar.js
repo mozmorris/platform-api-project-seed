@@ -31,6 +31,10 @@ class TitleBar extends HTMLElement {
             } else {
                 document.getElementById('lock-button').classList.add('layout-locked');
             }
+
+            const win = await fin.Window.getCurrent()
+            const options = await win.getOptions()
+            this.updateAlwaysOnTopButton(options)
         });
     }
 
@@ -40,6 +44,7 @@ class TitleBar extends HTMLElement {
                     <div id="title"></div>
                 </div>
                 <div id="buttons-wrapper">
+                    <div class="button" title="Toggle alwaysOnTop" id="always-on-top-button" @click=${this.toggleAlwaysOnTop}></div>
                     <div class="button" title="Toggle Theme" id="theme-button" @click=${this.toggleTheme}></div>
                     <div class="button" title="Toggle Sidebar" id="menu-button" @click=${this.toggleMenu}></div>
                     <div class="button" title="Toggle Layout Lock" id="lock-button" @click=${this.toggleLockedLayout}></div>
@@ -112,6 +117,25 @@ class TitleBar extends HTMLElement {
 
     toggleMenu = () => {
         document.querySelector('left-menu').classList.toggle('hidden');
+    }
+
+    toggleAlwaysOnTop = async () => {
+        const win = await fin.Window.getCurrent()
+        const options = await win.getOptions()
+
+        const updatedOptions = { alwaysOnTop: !options.alwaysOnTop }
+
+        win.updateOptions(updatedOptions)
+
+        this.updateAlwaysOnTopButton(updatedOptions)
+    };
+
+    updateAlwaysOnTopButton = (options) => {
+        if (options.alwaysOnTop) {
+            document.getElementById('always-on-top-button').classList.add('on-top');
+        } else {
+            document.getElementById('always-on-top-button').classList.remove('on-top');
+        }
     }
 }
 
