@@ -26,7 +26,7 @@
             }
         },
         "defaultWindowOptions": {
-            "url": "http://localhost:5555/platform-window.html",
+            "url": "http://localhost:5555/platform-window-does-not-exist.html",
             "contextMenu": true,
             "defaultWidth": 600,
             "defaultHeight": 600,
@@ -56,6 +56,7 @@
     "snapshot": {
         "windows": [
             {
+                "autoShow": false,
                 "layout": {
                     "content": [
                         {
@@ -67,7 +68,7 @@
                                     "componentName": "view",
                                     "componentState": {
                                         "processAffinity": "ps_1",
-                                        "url": "https://cdn.openfin.co/embed-web/chart.html"
+                                        "url": "http://localhost:5555/color-view.html"
                                     }
                                 }
                             ]

@@ -25,6 +25,14 @@
             }
         </style>
         <script type="module" src="js/color-view.js"></script>
+
+        <script>
+            (async () => {
+                const view = await fin.View.getCurrent()
+                const win = await view.getCurrentWindow()
+                await win.show()
+            })()
+        </script>
     </head>
     <body>
         <color-picker></color-picker>
